@@ -11,6 +11,7 @@ public class Scrolling {
 
     public static void scrollToElement(WebDriver driver, By locator) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(locator));
+        js.executeScript("arguments[0].scrollIntoView(true);",
+                ElementsActions.findElement(driver, locator));
     }
 }
