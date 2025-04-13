@@ -15,4 +15,20 @@ public class BrowserActions {
     public static void navigateToUrl(WebDriver driver, String url) {
         driver.get(url);
     }
+    /**
+     * This method is used to get the current url of page.
+     *
+     * @param driver The WebDriver instance used to control the browser.
+     */
+    public static String getCurrentUrl(WebDriver driver) {
+        return driver.getCurrentUrl();
+    }
+    /**
+     * This method is used to get the current page title.
+     *
+     * @param driver The WebDriver instance used to control the browser.
+     */
+    public static String getPageTitle(WebDriver driver) {
+        return driver.getTitle();
+    }
 }
