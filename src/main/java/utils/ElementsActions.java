@@ -6,7 +6,9 @@ import org.openqa.selenium.WebDriver;
 
 
 public class ElementsActions {
-
+    private ElementsActions() {
+        // Prevent instantiation
+    }
     /**
      * Sends keys to a specified web element after ensuring it's visible.
      *
@@ -17,6 +19,7 @@ public class ElementsActions {
     @Step("Sending data: '{data}' to element: {locator}")
     public static void sendData(WebDriver driver, By locator, String data) {
         Waits.waitForElementVisible(driver, locator);
+        Scrolling.scrollToElement(driver, locator);
         driver.findElement(locator).sendKeys(data);
         LogsUtils.info("Data entered: ", data, " in element: ", locator.toString());
     }
@@ -30,6 +33,7 @@ public class ElementsActions {
     @Step("Clicking on element: {locator}")
     public static void clicking(WebDriver driver, By locator) {
         Waits.waitForElementClickable(driver, locator);
+        Scrolling.scrollToElement(driver, locator);
         driver.findElement(locator).click();
         LogsUtils.info("Clicked on element: ", locator.toString());
     }
