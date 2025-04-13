@@ -31,4 +31,12 @@ public class BrowserActions {
     public static String getPageTitle(WebDriver driver) {
         return driver.getTitle();
     }
+    /**
+     * This method is used to refresh the current page.
+     *
+     * @param driver The WebDriver instance used to control the browser.
+     */
+    public static void refreshPage(WebDriver driver) {
+        driver.navigate().refresh();
+    }
 }
