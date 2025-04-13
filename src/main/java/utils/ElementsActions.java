@@ -37,7 +37,20 @@ public class ElementsActions {
         driver.findElement(locator).click();
         LogsUtils.info("Clicked on element: ", locator.toString());
     }
-
+    /**
+     * Retrieves the text from a specified web element after ensuring it's visible.
+     *
+     * @param driver  The WebDriver instance.
+     * @param locator The By locator of the target element.
+     * @return The text content of the specified element as a String.
+     */
+    public static String getText(WebDriver driver, By locator) {
+        Waits.waitForElementVisible(driver, locator);
+        Scrolling.scrollToElement(driver, locator);
+        String text = driver.findElement(locator).getText();
+        LogsUtils.info("Getting text: ", text, " from element: ", locator.toString());
+        return text;
+    }
     /**
      * Retrieves a specified attribute's value from a web element after ensuring it's visible.
      *
@@ -52,4 +65,6 @@ public class ElementsActions {
         LogsUtils.info("Getting attribute: ", attribute, " from element: ", locator.toString());
         return driver.findElement(locator).getDomAttribute(attribute);
     }
+
+
 }
