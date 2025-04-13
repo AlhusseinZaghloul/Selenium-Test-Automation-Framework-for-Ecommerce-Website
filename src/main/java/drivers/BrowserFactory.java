@@ -22,6 +22,7 @@ public class BrowserFactory {
                 options.addArguments("--disable-extensions");
                 options.addArguments("--disable-infobars");
                 options.addArguments("--disable-notifications");
+                options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
 //                options.addArguments("--remote-allow-origins=*");
 //                Map<String, Object> prefs = Map.of(
 //                        "profile.default_content_setting_values.notifications", 2,
@@ -40,6 +41,7 @@ public class BrowserFactory {
                 firefoxOptions.addArguments("--disable-extensions");
                 firefoxOptions.addArguments("--disable-infobars");
                 firefoxOptions.addArguments("--disable-notifications");
+                firefoxOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 //firefoxOptions.addArguments("--remote-allow-origins=*");
                 firefoxOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 firefoxOptions.setAcceptInsecureCerts(true);
