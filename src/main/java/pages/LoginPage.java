@@ -19,8 +19,8 @@ public class LoginPage {
     private final By errorMessage= By.xpath("//h3[@data-test='error']");
 
     @Step("Open login page")
-    public LoginPage openLoginPage() {
-        BrowserActions.navigateToUrl(driver, "https://www.saucedemo.com/");
+    public LoginPage openLoginPage(String url) {
+        BrowserActions.navigateToUrl(driver, url);
         return this;
     }
     @Step("Enter username: {userName}")
