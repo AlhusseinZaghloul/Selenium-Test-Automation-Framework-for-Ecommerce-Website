@@ -28,7 +28,7 @@ public class Waits {
                 }
                 );
     }
-    
+
     //wait for element to be clickable
     public static WebElement waitForElementClickable(WebDriver driver, By locator) {
         LogsUtils.info("Waiting for element to be clickable: ", locator.toString());
