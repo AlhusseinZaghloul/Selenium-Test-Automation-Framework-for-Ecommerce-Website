@@ -1,0 +1,10 @@
+{
+  "valid-login-credentials": {
+    "username": "standard_user",
+    "password": "secret_sauce"
+  },
+  "invalid-login-credentials": {
+    "username": "invalid_user",
+    "password": "342@710"
+  }
+}
