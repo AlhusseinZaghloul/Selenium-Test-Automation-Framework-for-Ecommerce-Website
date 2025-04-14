@@ -3,10 +3,7 @@ package listeners;
 import drivers.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.*;
-import utils.AllureUtils;
-import utils.FilesUtils;
-import utils.LogsUtils;
-import utils.ScreenshotUtils;
+import utils.*;
 
 import java.io.File;
 
@@ -14,6 +11,7 @@ public class TestNGListeners implements IExecutionListener, ITestListener, IInvo
 
     @Override
     public void onExecutionStart() {
+        PropertiesUtils.loadProperties();
         LogsUtils.info("Test Execution started");
         FilesUtils.deleteFiles(new File(AllureUtils.ALLURE_RESULTS_PATH));
         FilesUtils.cleanDirectory(new File(LogsUtils.LOGS_PATH));
