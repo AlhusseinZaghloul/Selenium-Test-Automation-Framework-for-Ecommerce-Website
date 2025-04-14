@@ -8,9 +8,9 @@ import org.apache.logging.log4j.Logger;
  * This class provides static methods to easily log messages at different severity levels.
  */
 public class LogsUtils {
-    //Private constructor to prevent instantiation of this utility class.
-    private LogsUtils() {}
-
+    private LogsUtils() {
+        // Prevent instantiation
+    }
     public static final String LOGS_PATH = "test-outputs/Logs";
 
     /**
