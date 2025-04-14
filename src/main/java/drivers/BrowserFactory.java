@@ -8,6 +8,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import utils.PropertiesUtils;
 
 import java.util.Map;
 
@@ -43,7 +44,9 @@ public class BrowserFactory {
                 "autofill.profile_enabled", false);
         options.setExperimentalOption("prefs", prefs);
         options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-        //options.addArguments("--headless");
+        if(!PropertiesUtils.getPropertyValue("executionType").equalsIgnoreCase("local")){
+            options.addArguments("--headless");
+        }
         return options;
     }
     private static FirefoxOptions getFirefoxOptions() {
@@ -55,7 +58,9 @@ public class BrowserFactory {
         firefoxOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         //firefoxOptions.addArguments("--remote-allow-origins=*");
         firefoxOptions.setAcceptInsecureCerts(true);
-        //firefoxOptions.addArguments("--headless");
+        if(!PropertiesUtils.getPropertyValue("executionType").equalsIgnoreCase("local")){
+            firefoxOptions.addArguments("--headless");
+        }
         return firefoxOptions;
     }
     private static EdgeOptions getEdgeOptions() {
@@ -70,7 +75,9 @@ public class BrowserFactory {
                 "autofill.profile_enabled", false);
         edgeOptions.setExperimentalOption("prefs", edgePrefs);
         edgeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-        //edgeOptions.addArguments("--headless");
+        if(!PropertiesUtils.getPropertyValue("executionType").equalsIgnoreCase("local")){
+            edgeOptions.addArguments("--headless");
+        }
         return edgeOptions;
     }
 
