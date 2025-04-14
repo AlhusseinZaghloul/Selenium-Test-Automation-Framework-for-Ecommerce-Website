@@ -12,6 +12,7 @@ import java.nio.file.Files;
 public class FilesUtils {
     //Private constructor to prevent instantiation of this utility class.
     private FilesUtils(){}
+
     /**
      * Retrieves the most recently modified file within a specified directory.
      *
