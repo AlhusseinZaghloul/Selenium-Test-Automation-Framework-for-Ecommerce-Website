@@ -1,5 +1,6 @@
 package utils;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 
 public class BrowserActions {
@@ -12,6 +13,7 @@ public class BrowserActions {
      * @param driver The WebDriver instance used to control the browser.
      * @param url    The URL to navigate to.
      */
+    @Step("Navigate to URL: {url}")
     public static void navigateToUrl(WebDriver driver, String url) {
         driver.get(url);
         LogsUtils.info("Navigated to URL: ", url);
@@ -21,6 +23,7 @@ public class BrowserActions {
      *
      * @param driver The WebDriver instance used to control the browser.
      */
+    @Step("Get current URL")
     public static String getCurrentUrl(WebDriver driver) {
         LogsUtils.info("Current URL: ", driver.getCurrentUrl());
         return driver.getCurrentUrl();
@@ -30,6 +33,7 @@ public class BrowserActions {
      *
      * @param driver The WebDriver instance used to control the browser.
      */
+    @Step("Get page title")
     public static String getPageTitle(WebDriver driver) {
         LogsUtils.info("Page title: ", driver.getTitle());
         return driver.getTitle();
@@ -39,6 +43,7 @@ public class BrowserActions {
      *
      * @param driver The WebDriver instance used to control the browser.
      */
+    @Step("Refresh the page")
     public static void refreshPage(WebDriver driver) {
         LogsUtils.info("Refreshing the page");
         driver.navigate().refresh();
