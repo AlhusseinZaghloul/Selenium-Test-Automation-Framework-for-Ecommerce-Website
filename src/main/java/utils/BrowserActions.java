@@ -14,6 +14,7 @@ public class BrowserActions {
      */
     public static void navigateToUrl(WebDriver driver, String url) {
         driver.get(url);
+        LogsUtils.info("Navigated to URL: ", url);
     }
     /**
      * This method is used to get the current url of page.
@@ -21,6 +22,7 @@ public class BrowserActions {
      * @param driver The WebDriver instance used to control the browser.
      */
     public static String getCurrentUrl(WebDriver driver) {
+        LogsUtils.info("Current URL: ", driver.getCurrentUrl());
         return driver.getCurrentUrl();
     }
     /**
@@ -29,6 +31,7 @@ public class BrowserActions {
      * @param driver The WebDriver instance used to control the browser.
      */
     public static String getPageTitle(WebDriver driver) {
+        LogsUtils.info("Page title: ", driver.getTitle());
         return driver.getTitle();
     }
     /**
@@ -37,6 +40,7 @@ public class BrowserActions {
      * @param driver The WebDriver instance used to control the browser.
      */
     public static void refreshPage(WebDriver driver) {
+        LogsUtils.info("Refreshing the page");
         driver.navigate().refresh();
     }
 }
