@@ -19,12 +19,12 @@ public class LoginTest {
 
     @BeforeClass
     public void init() {
-        browserName = PropertiesUtils.getPropertyValue("browserType");
         testData = new JsonUtils("testData");
     }
 
     @BeforeMethod
     public void setUp() {
+        browserName = PropertiesUtils.getPropertyValue("browserType");
         driver = DriverManager.createInstance(browserName);
         new LoginPage(driver).openLoginPage(getPropertyValue("loginPageURL"));
     }
