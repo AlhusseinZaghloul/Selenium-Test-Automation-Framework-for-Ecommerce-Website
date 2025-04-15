@@ -42,6 +42,12 @@ public class LoginPage {
     public String getErrorMessage() {
         return ElementsActions.getText(driver, errorMessage);
     }
+    @Step("Perform login with username: {userName} and password: {passWord}")
+    public void performLogin(String userName, String passWord) {
+        enterUsername(userName);
+        enterPassword(passWord);
+        clickLoginButton();
+    }
 
 
 
