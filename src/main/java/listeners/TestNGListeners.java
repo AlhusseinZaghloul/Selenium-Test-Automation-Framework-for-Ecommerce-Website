@@ -11,23 +11,32 @@ public class TestNGListeners implements IExecutionListener, ITestListener, IInvo
 
     @Override
     public void onExecutionStart() {
+        LogsUtils.info("==================== Test Execution Started ====================");
+        // Load properties file
         PropertiesUtils.loadProperties();
-        LogsUtils.info("Test Execution started");
         FilesUtils.deleteFiles(new File(AllureUtils.ALLURE_RESULTS_PATH));
+        // Clean directories for logs folder
         FilesUtils.cleanDirectory(new File(LogsUtils.LOGS_PATH));
+        // Clean directories for screenshots folder
         FilesUtils.cleanDirectory(new File(ScreenshotUtils.SCREENSHOTS_PATH));
+        LogsUtils.info("Cleaned output directories (Allure Results, Logs, Screenshots).");
     }
 
     @Override
     public void onExecutionFinish() {
-        LogsUtils.info("Test Execution finished");
+        LogsUtils.info("==================== Test Execution Finished ====================");
     }
 
     @Override
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
-            AllureUtils.attachLogsToAllureReport();
+            switch (testResult.getStatus()) {
+                case ITestResult.SUCCESS -> ScreenshotUtils.takeScreenshot("passed-" + testResult.getName());
+                case ITestResult.FAILURE -> ScreenshotUtils.takeScreenshot("failed-" + testResult.getName());
+                case ITestResult.SKIP -> ScreenshotUtils.takeScreenshot("skipped-" + testResult.getName());
+            }
         }
+        AllureUtils.attachLogsToAllureReport();
     }
 
     @Override
@@ -38,12 +47,6 @@ public class TestNGListeners implements IExecutionListener, ITestListener, IInvo
     @Override
     public void onTestFailure(ITestResult result) {
         LogsUtils.info("Test case " , result.getName() , " failed");
-        WebDriver driver = DriverManager.getDriver();
-        if (driver != null) {
-            ScreenshotUtils.captureScreenshot(driver, result.getName());
-        } else {
-            LogsUtils.info("Driver is null, cannot take screenshot for test " + result.getName());
-        }
     }
 
     @Override
