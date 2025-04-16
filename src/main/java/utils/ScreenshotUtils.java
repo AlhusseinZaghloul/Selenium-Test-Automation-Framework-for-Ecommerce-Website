@@ -8,10 +8,11 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-    public class ScreenshotUtils {
+import static utils.TImeStampUtils.getTimeStamp;
+
+public class ScreenshotUtils {
 
         public static final String SCREENSHOTS_PATH = "test-outputs/screenshots/";
         private static final DateTimeFormatter TIMESTAMP_FORMAT =
@@ -24,8 +25,7 @@ import java.time.format.DateTimeFormatter;
          */
         public static void takeScreenshot(String testName) {
             String sanitizedTestName = testName.replaceAll("[^a-zA-Z0-9_-]", "_");
-            String timestamp = LocalDateTime.now().format(TIMESTAMP_FORMAT);
-            String screenshotFile = String.format("%s_%s.png", sanitizedTestName, timestamp);
+            String screenshotFile = String.format("%s_%s.png", sanitizedTestName,getTimeStamp());
             String filePath = SCREENSHOTS_PATH + screenshotFile;
 
             try {
