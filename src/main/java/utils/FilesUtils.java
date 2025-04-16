@@ -82,11 +82,11 @@ public class FilesUtils {
      *
      * @param file The File object representing the directory to clean.
      */
-    public static void cleanDirectory(File file) { // 1 usage
+    public static void cleanDirectory(File file) {
         try {
-            // Use FileUtils.cleanDirectory from Apache Commons IO to safely delete directory contents
-            FileUtils.cleanDirectory(file);
-        } catch (IOException exception) {
+            // Use FileUtils.deleteQuietly from Apache Commons IO to safely delete directory contents
+            FileUtils.deleteQuietly(file);
+        } catch (Exception exception) {
             LogsUtils.error(exception.getMessage());
         }
     }
