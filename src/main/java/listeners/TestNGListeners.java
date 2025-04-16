@@ -1,7 +1,5 @@
 package listeners;
 
-import drivers.DriverManager;
-import org.openqa.selenium.WebDriver;
 import org.testng.*;
 import utils.*;
 

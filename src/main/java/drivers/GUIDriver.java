@@ -11,39 +11,28 @@ import static org.testng.AssertJUnit.fail;
  * Uses ThreadLocal to ensure each thread has its own WebDriver instance, making it suitable
  * for parallel test execution in automation frameworks.
  */
-public class DriverManager {
+public class GUIDriver {
     //ThreadLocal storage for WebDriver instances, ensuring thread safety.
     private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
 
-    // Private constructor to prevent instantiation of this utility class.
-    private DriverManager() {
-        super();
-    }
-
     /**
-     * Creates a new WebDriver instance for the specified browser, sets it in the ThreadLocal,
-     * and returns it. This method allows explicit initialization of the WebDriver with a
-     * specific browser type.
+     * Constructor for GUIDriver. Initializes a new WebDriver instance based on the provided browser name.
      *
-     * @param browserName The name of the browser to create the driver for (e.g., "chrome", "firefox").
-     * @return The created WebDriver instance.
+     * @param browserName The name of the browser to initialize (e.g., "chrome", "firefox", "edge").
      */
-    @Step("Setting up browser")
-    public static WebDriver createInstance(String browserName) { // no usages
-        WebDriver driver = BrowserFactory.getBrowser(browserName);
-        LogsUtils.info("Creating driver instance for browser: ", browserName);
+    public GUIDriver(String browserName) {
+        WebDriver driver=getDriver(browserName).startDriver();
         setDriver(driver);
-        return getDriver();
     }
-
     /**
      * Retrieves the WebDriver instance associated with the current thread from the ThreadLocal.
      * If no driver has been initialized, logs an error and fails the test, indicating a setup issue.
      *
      * @return The WebDriver instance for the current thread.
      */
+
     @Step("Getting WebDriver instance")
-    public static WebDriver getDriver() { // 1 usage
+    public static WebDriver getDriver() {
         if (driverThreadLocal.get() == null) {
             LogsUtils.error("Driver is null");
             fail("Driver is null");
@@ -52,27 +41,41 @@ public class DriverManager {
     }
 
     /**
+     * Factory method to get the appropriate AbstractDriver implementation based on the browser name.
+     *
+     * @param browserName The name of the browser.
+     * @return An instance of AbstractDriver for the specified browser.
+     */
+    @Step("Getting driver instance")
+    private AbstractDriver getDriver(String browserName) {
+        return switch (browserName.toLowerCase()) {
+            case "chrome" -> new ChromeFactory();
+            case "firefox" -> new FirefoxFactory();
+            case "edge" -> new EdgeFactory();
+            default -> throw new IllegalArgumentException("Unsupported browser: " + browserName);
+        };
+    }
+
+    /**
      * Sets the provided WebDriver instance in the ThreadLocal for the current thread.
      *
      * @param driver The WebDriver instance to set.
      */
     @Step("Setting WebDriver instance")
-    public static void setDriver(WebDriver driver) { // 1 usage
+    private void setDriver(WebDriver driver) {
         driverThreadLocal.set(driver);
     }
 
     /**
-     * Retrieves the WebDriver instance from the ThreadLocal. If no driver exists, lazily
-     * initializes a new Chrome driver by default, sets it, and returns it. This method
-     * provides a fallback mechanism for driver initialization.
-     *
+     * Retrieves the WebDriver instance from the ThreadLocal. If no driver exists, it fails the test.
+     * This method ensures the driver is available for use in the current thread.
      * @return The WebDriver instance for the current thread.
      */
     @Step("Getting WebDriver instance")
-    public static WebDriver getDriverThreadLocal() {
+    public WebDriver get() {
         if (driverThreadLocal.get() == null) {
-            WebDriver driver = BrowserFactory.getBrowser("chrome"); // Default to Chrome
-            setDriver(driver);
+            LogsUtils.error("Driver is null");
+            fail("Driver is null");
         }
         return driverThreadLocal.get();
     }
