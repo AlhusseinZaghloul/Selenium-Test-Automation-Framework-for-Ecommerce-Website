@@ -1,6 +1,6 @@
 package utils;
 
-import drivers.DriverManager;
+import drivers.GUIDriver;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -30,7 +30,7 @@ public class ScreenshotUtils {
 
             try {
                 Files.createDirectories(Paths.get(SCREENSHOTS_PATH));
-                File screenshot = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.FILE);
+                File screenshot = ((TakesScreenshot) GUIDriver.getDriver()).getScreenshotAs(OutputType.FILE);
                 FileUtils.copyFile(screenshot, new File(filePath));
                 LogsUtils.info("Screenshot saved at: " + filePath);
                 AllureUtils.attachScreenshotToAllureReport(testName, filePath);
