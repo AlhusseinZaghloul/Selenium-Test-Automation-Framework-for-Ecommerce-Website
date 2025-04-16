@@ -3,9 +3,12 @@ package utils;
 import com.jayway.jsonpath.JsonPath;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
 import java.io.FileReader;
-
-
+/**
+ * JsonUtils is a utility class for reading and parsing JSON files.
+ * It provides methods to read JSON data from a file and extract specific values using JSONPath.
+ */
 public class JsonUtils {
     private static final String JSON_FILE_PATH = "src/test/resources/";
     private String jsonReader;
@@ -33,6 +36,9 @@ public class JsonUtils {
                     "No results for json path: '" + jsonPath + "' in the json file: '" + this.jsonFileName + "'"
             );
         }
+        LogsUtils.info(
+                "Json data for path: '" + jsonPath + "' in the json file: '" + this.jsonFileName + "' is: " + testData
+        );
         return testData;
     }
 }
