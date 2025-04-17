@@ -1,6 +1,6 @@
 package tests;
 
-import drivers.DriverManager;
+import drivers.GUIDriver;
 import listeners.TestNGListeners;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -16,16 +16,24 @@ public class LoginTest {
     WebDriver driver;
     String browserName;
     JsonUtils testData;
+    String expectedUrl;
+    String expectedErrorMessageForInvalidCredentials;
+    String expectedErrorMessageForLockedOutUser;
+
 
     @BeforeClass
     public void init() {
+        // Initialize the test data
         testData = new JsonUtils("testData");
+        expectedUrl = getPropertyValue("homePageURL");
+        expectedErrorMessageForInvalidCredentials = testData.getJsonData("error-messages.invalid-data");
+        expectedErrorMessageForLockedOutUser = testData.getJsonData("error-messages.locked_out_user");
     }
 
     @BeforeMethod
     public void setUp() {
-        browserName = PropertiesUtils.getPropertyValue("browserType");
-        driver = DriverManager.createInstance(browserName);
+        browserName = PropertiesUtils.getPropertyValue("browserName");
+        driver = new GUIDriver(browserName).get();
         new LoginPage(driver).openLoginPage(getPropertyValue("loginPageURL"));
     }
 
@@ -36,7 +44,6 @@ public class LoginTest {
                 .enterPassword(testData.getJsonData("valid-login-credentials.password"))
                 .clickLoginButton();
 
-        String expectedUrl = getPropertyValue("homePageURL");
         String actualUrl = driver.getCurrentUrl();
         Assert.assertEquals(expectedUrl, actualUrl, "URL does not match after login");
     }
@@ -48,14 +55,26 @@ public class LoginTest {
                 .enterPassword(testData.getJsonData("invalid-login-credentials.password"))
                 .clickLoginButton();
 
-        String expectedErrorMessage = "Epic sadface: Username and password do not match any user in this service";
         String actualErrorMessage = new LoginPage(driver).getErrorMessage();
-        Assert.assertEquals(expectedErrorMessage, actualErrorMessage, "Error message does not match");
+        Assert.assertEquals(actualErrorMessage, expectedErrorMessageForInvalidCredentials,
+                "Error message does not match for invalid credentials");
+    }
+
+    @Test
+    public void loginWithLockedOutUser() {
+        new LoginPage(driver)
+                .enterUsername(testData.getJsonData("locked-out-user.username"))
+                .enterPassword(testData.getJsonData("locked-out-user.password"))
+                .clickLoginButton();
+
+        String actualErrorMessage = new LoginPage(driver).getErrorMessage();
+        Assert.assertEquals(actualErrorMessage, expectedErrorMessageForLockedOutUser,
+                "Error message does not match for locked out user");
     }
 
     @AfterMethod
     public void tearDown() {
-        DriverManager.quitDriver();
+        GUIDriver.quitDriver();
     }
 
 }
