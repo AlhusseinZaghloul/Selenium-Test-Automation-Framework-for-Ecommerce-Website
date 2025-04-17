@@ -37,7 +37,7 @@ public class LoginTest {
         new LoginPage(driver).openLoginPage(getPropertyValue("loginPageURL"));
     }
 
-    @Test
+    @Test(description = "Verify that the user can log in with valid credentials")
     public void loginTest() {
         new LoginPage(driver)
                 .enterUsername(testData.getJsonData("valid-login-credentials.username"))
@@ -48,7 +48,7 @@ public class LoginTest {
         Assert.assertEquals(expectedUrl, actualUrl, "URL does not match after login");
     }
 
-    @Test
+    @Test(description = "Verify that the user cannot log in with invalid credentials")
     public void loginWithInvalidCredentials() {
         new LoginPage(driver)
                 .enterUsername(testData.getJsonData("invalid-login-credentials.username"))
@@ -60,7 +60,7 @@ public class LoginTest {
                 "Error message does not match for invalid credentials");
     }
 
-    @Test
+    @Test(description = "Verify that the user cannot log in with locked out user")
     public void loginWithLockedOutUser() {
         new LoginPage(driver)
                 .enterUsername(testData.getJsonData("locked-out-user.username"))
