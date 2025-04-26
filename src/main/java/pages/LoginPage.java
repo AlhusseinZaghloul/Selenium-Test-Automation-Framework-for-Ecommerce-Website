@@ -38,9 +38,9 @@ public class LoginPage {
     }
 
     @Step("Click login button")
-    public LoginPage clickLoginButton() {
+    public HomePage clickLoginButton() {
         ElementsActions.clicking(driver, loginButton);
-        return this;
+        return new HomePage(driver);
     }
 
     @Step("Get error message")
