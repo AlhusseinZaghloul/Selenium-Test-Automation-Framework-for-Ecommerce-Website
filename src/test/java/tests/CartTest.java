@@ -9,8 +9,6 @@ import pages.HomePage;
 import pages.LoginPage;
 import utils.CustomSoftAssertion;
 import utils.JsonUtils;
-import utils.PropertiesUtils;
-
 import static utils.CustomSoftAssertion.softAssertion;
 import static utils.PropertiesUtils.getPropertyValue;
 
@@ -78,6 +76,7 @@ public class CartTest {
                 "Price mismatch for " + productName4);
 
     }
+
     @AfterMethod
     public void tearDown() {
         GUIDriver.quitDriver();
