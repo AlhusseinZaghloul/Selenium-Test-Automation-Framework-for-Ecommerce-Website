@@ -32,5 +32,11 @@
       "name": "Sauce Labs Fleece Jacket",
       "price": "$49.99"
     }
-  }
+  },
+    "checkout-information": {
+        "first-name": "Test",
+        "last-name": "Shipper",
+        "postal-code": "64587"
+    },
+    "checkout-complete-message": "Thank you for your order!"
 }
