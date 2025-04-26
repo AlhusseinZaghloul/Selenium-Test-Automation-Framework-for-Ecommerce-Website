@@ -3,11 +3,11 @@ package tests;
 import drivers.GUIDriver;
 import listeners.TestNGListeners;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.LoginPage;
 import utils.JsonUtils;
 import utils.PropertiesUtils;
+import utils.Validations;
 
 import static utils.PropertiesUtils.getPropertyValue;
 
@@ -16,7 +16,7 @@ public class LoginTest {
     WebDriver driver;
     String browserName;
     JsonUtils testData;
-    String expectedUrl;
+    String expectedURL;
     String expectedErrorMessageForInvalidCredentials;
     String expectedErrorMessageForLockedOutUser;
 
@@ -25,7 +25,7 @@ public class LoginTest {
     public void init() {
         // Initialize the test data
         testData = new JsonUtils("testData");
-        expectedUrl = getPropertyValue("homePageURL");
+        expectedURL = getPropertyValue("homePageURL");
         expectedErrorMessageForInvalidCredentials = testData.getJsonData("error-messages.invalid-data");
         expectedErrorMessageForLockedOutUser = testData.getJsonData("error-messages.locked_out_user");
     }
@@ -44,8 +44,8 @@ public class LoginTest {
                 .enterPassword(testData.getJsonData("valid-login-credentials.password"))
                 .clickLoginButton();
 
-        String actualUrl = driver.getCurrentUrl();
-        Assert.assertEquals(expectedUrl, actualUrl, "URL does not match after login");
+        String actualURL = driver.getCurrentUrl();
+        Validations.validatePageUrl(driver, actualURL,"URL does not match after login");
     }
 
     @Test(description = "Verify that the user cannot log in with invalid credentials")
@@ -56,7 +56,7 @@ public class LoginTest {
                 .clickLoginButton();
 
         String actualErrorMessage = new LoginPage(driver).getErrorMessage();
-        Assert.assertEquals(actualErrorMessage, expectedErrorMessageForInvalidCredentials,
+        Validations.validateEquals(actualErrorMessage, expectedErrorMessageForInvalidCredentials,
                 "Error message does not match for invalid credentials");
     }
 
@@ -68,7 +68,7 @@ public class LoginTest {
                 .clickLoginButton();
 
         String actualErrorMessage = new LoginPage(driver).getErrorMessage();
-        Assert.assertEquals(actualErrorMessage, expectedErrorMessageForLockedOutUser,
+        Validations.validateEquals(actualErrorMessage, expectedErrorMessageForLockedOutUser,
                 "Error message does not match for locked out user");
     }
 
