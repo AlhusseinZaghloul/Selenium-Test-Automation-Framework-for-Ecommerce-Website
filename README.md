@@ -40,9 +40,6 @@ A robust Selenium-based automation framework designed for end-to-end testing of 
 ```
 Selenium-Test-Automation-Framework-for-Ecommerce-Website/
 ├── .idea/                  # IntelliJ configuration
-├── .gitignore              # Git ignore rules
-├── pom.xml                 # Maven configuration
-├── testng.xml              # TestNG suite file
 ├── src/
 │   ├── main/
 │   │   ├── java/
@@ -62,12 +59,14 @@ Selenium-Test-Automation-Framework-for-Ecommerce-Website/
 │   │   │   │   └── BrowserActions.java
 │   │   │   │   └── ElementsActions.java
 │   │   │   │   └── FilesUtils.java
+│   │   │   │   └── CustomSoftAssertion.java
 │   │   │   │   └── JsonUtils.java
 │   │   │   │   └── LogsUtils.java
 │   │   │   │   └── PropertiesUtils.java
 │   │   │   │   └── ScreenshotUtils.java
 │   │   │   │   └── Scrolling.java
 │   │   │   │   └── TImeStampUtils.java
+│   │   │   │   └── Validations.java
 │   │   │   │   └── Waits.java
 │   │   │   └── resources/  # Configuration files
 │   │   │       └── allure.properties
@@ -78,7 +77,9 @@ Selenium-Test-Automation-Framework-for-Ecommerce-Website/
 │   └── test/
 │       ├── java/
 │       │   └── tests/      # Test cases
+│       │       └── CartTest.java
 │       │       └── LoginTest.java
+│       │       └── HomePageTest.java
 │       && resources/      # Test data
 │           └── testData.json
 └── test-outputs/           # Test artifacts
@@ -86,6 +87,9 @@ Selenium-Test-Automation-Framework-for-Ecommerce-Website/
     ├── Logs/               # Log files
     ├── screenshots/        # Screenshot captures
     └── target/             # Build output
+├── .gitignore              # Git ignore rules
+├── pom.xml                 # Maven configuration
+├── testng.xml              # TestNG suite file
 ```
 
 ---
@@ -180,7 +184,7 @@ This framework employs a thread-safe mechanism to manage Selenium WebDriver inst
 ### Key Features Highlighted:
 1. **Modular Design**: Separation of concerns via POM, utilities, and listeners.
 2. **Data-Driven Testing**: JSON-based test data in `testData.json`.
-3. **Logging & Screenshots**: Automated logs and screenshot captures on failure.
+3. **Logging & Screenshots**: Automated logs and screenshot captures.
 4. **CI/CD Ready**: Maven + TestNG setup for seamless integration.
 5. **Single Responsibility Principle**:
    - Each class has a single responsibility (e.g., page classes handle element interactions, utility classes handle specific operations).
