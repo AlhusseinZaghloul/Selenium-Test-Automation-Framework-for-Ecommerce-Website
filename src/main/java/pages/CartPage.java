@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.ElementsActions;
@@ -20,23 +21,27 @@ public class CartPage {
         this.driver = driver;
     }
 
+    @Step("Get product name")
     public String getProductName() {
         return ElementsActions.getText(driver, productName);
     }
 
+    @Step("Get product price")
     public String getProductPrice() {
         // if we only ever have one product on the page
         return ElementsActions.getText(driver, productPrice);
     }
 
     // grab price by visible product name
+    @Step("Get product price by name")
     public String getProductPriceByName(String name) {
         By priceLocator = By.xpath(String.format(PRICE_BY_NAME_XPATH, name));
         return ElementsActions.getText(driver, priceLocator);
     }
 
-    public CartPage clickOnCheckoutButton() {
+    @Step("Click on Checkout button")
+    public CheckoutInfoPage clickOnCheckoutButton() {
         ElementsActions.clicking(driver, checkoutButton);
-        return this;
+        return new CheckoutInfoPage(driver);
     }
 }

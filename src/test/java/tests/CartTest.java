@@ -48,7 +48,7 @@ public class CartTest {
     }
 
     @Test(description = "Verify that the user can add multiple products to the cart and check their prices")
-    public void addProductToCartTest() {
+    public void addProductsToCartTest() {
         new HomePage(driver)
                 .addProductToCart(productName1)
                 .addProductToCart(productName2)
@@ -58,7 +58,7 @@ public class CartTest {
 
         CartPage cart = new CartPage(driver);
 
-        // -- assert each price via the dynamic locator
+        // assert each price via the dynamic locator
         String actualPrice1 = cart.getProductPriceByName(productName1);
         softAssertion.assertEquals(actualPrice1, expectedPrice1,
                 "Price mismatch for " + productName1);
