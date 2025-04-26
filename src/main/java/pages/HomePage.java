@@ -9,7 +9,7 @@ import utils.ElementsActions;
 import utils.LogsUtils;
 
 public class HomePage {
-    private WebDriver driver;
+    private final WebDriver driver;
 
     //Locators
     By cartIcon = By.id("shopping_cart_container");
