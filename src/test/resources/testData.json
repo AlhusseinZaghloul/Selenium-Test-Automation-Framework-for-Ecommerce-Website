@@ -6,5 +6,31 @@
   "invalid-login-credentials": {
     "username": "invalid_user",
     "password": "342@710"
+  },
+  "locked-out-user":{
+    "username": "locked_out_user",
+    "password": "secret_sauce"
+  },
+  "error-messages": {
+    "invalid-data": "Epic sadface: Username and password do not match any user in this service",
+    "locked_out_user": "Epic sadface: Sorry, this user has been locked out."
+  },
+  "valid-products": {
+    "product-1": {
+      "name": "Sauce Labs Backpack",
+      "price": "$29.99"
+    },
+    "product-2": {
+      "name": "Sauce Labs Bike Light",
+      "price": "$9.99"
+    },
+    "product-3": {
+      "name": "Sauce Labs Bolt T-Shirt",
+      "price": "$15.99"
+    },
+    "product-4": {
+      "name": "Sauce Labs Fleece Jacket",
+      "price": "$49.99"
+    }
   }
 }
