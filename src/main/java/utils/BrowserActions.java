@@ -24,7 +24,7 @@ public class BrowserActions {
      * @param driver The WebDriver instance used to control the browser.
      */
     @Step("Get current URL")
-    public static String getCurrentUrl(WebDriver driver) {
+    public static String getCurrentURL(WebDriver driver) {
         LogsUtils.info("Current URL: ", driver.getCurrentUrl());
         return driver.getCurrentUrl();
     }
