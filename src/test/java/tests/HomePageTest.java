@@ -3,20 +3,18 @@ package tests;
 import drivers.GUIDriver;
 import listeners.TestNGListeners;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.CustomSoftAssertion;
 import utils.JsonUtils;
 import utils.PropertiesUtils;
-import org.testng.asserts.SoftAssert;
 
 import static utils.CustomSoftAssertion.softAssertion;
 import static utils.PropertiesUtils.getPropertyValue;
 
 @Listeners(TestNGListeners.class)
-public class TestHomePage {
+public class HomePageTest {
     WebDriver driver;
     String browserName;
     JsonUtils testData;
