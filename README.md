@@ -1,7 +1,7 @@
 
 # Selenium Test Automation Framework for Swag Labs Website
 
-A robust Selenium-based automation framework designed for end-to-end testing of web applications. Built using Java, TestNG, Maven,Log4J2, and Allure Reporting.
+This is a robust Selenium-based automation framework for testing web applications. It's built with Java, TestNG, Maven, Log4J2, and Allure Reporting, and leverages the Page Object Model (POM) for efficient test design. The framework's WebDriver management system is designed for flexibility and maintainability, utilizing the Abstract Factory, Factory Method, and Thread Local patterns to handle different browser types and ensure thread safety.
 
 ---
 
@@ -53,32 +53,39 @@ Selenium-Test-Automation-Framework-for-Ecommerce-Website/
 │   │   │   ├── listeners/  # TestNG event listeners
 │   │   │   │   └── TestNGListeners.java
 │   │   │   ├── pages/      # Page Object Model (POM)
-│   │   │   │   └── LoginPage.java
+│   │   │   │   ├──  CartPage.java
+│   │   │   │   ├──  CheckoutComplete.java
+│   │   │   │   ├──  CheckoutInfoPage.java
+│   │   │   │   ├──  CheckoutOverviewPage.java
+│   │   │   │   ├──  ConfirmationPage.java
+│   │   │   │   ├──  HomePage.java
+│   │   │   │   └──  LoginPage.java
 │   │   │   ├── utils/      # Utility classes
-│   │   │   │   └── AllureUtils.java
-│   │   │   │   └── BrowserActions.java
-│   │   │   │   └── ElementsActions.java
-│   │   │   │   └── FilesUtils.java
-│   │   │   │   └── CustomSoftAssertion.java
-│   │   │   │   └── JsonUtils.java
-│   │   │   │   └── LogsUtils.java
-│   │   │   │   └── PropertiesUtils.java
-│   │   │   │   └── ScreenshotUtils.java
-│   │   │   │   └── Scrolling.java
-│   │   │   │   └── TImeStampUtils.java
-│   │   │   │   └── Validations.java
+│   │   │   │   ├── AllureUtils.java
+│   │   │   │   ├── BrowserActions.java
+│   │   │   │   ├── ElementsActions.java
+│   │   │   │   ├── FilesUtils.java
+│   │   │   │   ├── CustomSoftAssertion.java
+│   │   │   │   ├── JsonUtils.java
+│   │   │   │   ├── LogsUtils.java
+│   │   │   │   ├── PropertiesUtils.java
+│   │   │   │   ├── ScreenshotUtils.java
+│   │   │   │   ├── Scrolling.java
+│   │   │   │   ├── TImeStampUtils.java
+│   │   │   │   ├── Validations.java
 │   │   │   │   └── Waits.java
 │   │   │   └── resources/  # Configuration files
-│   │   │       └── allure.properties
-│   │   │       └── environment.properties
-│   │   │       └── log4j2.properties
-│   │   │       └── waits.properties
+│   │   │       ├── allure.properties
+│   │   │       ├── environment.properties
+│   │   │       ├── log4j2.properties
+│   │   │       ├── waits.properties
 │   │   │       └── web.properties
 │   └── test/
 │       ├── java/
 │       │   └── tests/      # Test cases
-│       │       └── CartTest.java
-│       │       └── LoginTest.java
+│       │       ├── CartTest.java
+│       │       ├── EndToEndScenariosTest.java
+│       │       ├── LoginTest.java
 │       │       └── HomePageTest.java
 │       && resources/      # Test data
 │           └── testData.json
@@ -89,7 +96,7 @@ Selenium-Test-Automation-Framework-for-Ecommerce-Website/
     └── target/             # Build output
 ├── .gitignore              # Git ignore rules
 ├── pom.xml                 # Maven configuration
-├── testng.xml              # TestNG suite file
+└── testng.xml              # TestNG suite file
 ```
 
 ---
